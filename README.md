@@ -20,7 +20,6 @@ Mockito uses its proxy mock maker and reflection member accessor because the tes
 
 Two additional tests use recording providers to check all 19,683 adult/child/infant count combinations from 0 through 26, then all 2,925 valid combinations again with individual tickets and adults last. A zero count in this matrix means the type is absent; explicit zero-quantity entries remain invalid. These bounded checks supplement the named examples and malformed-input tests. They do not prove behaviour for every possible input or settle ambiguities in the specification.
 
-See [the testing notes](TESTING.md) for behaviour examples, test scope and development methodology.
 
 ## Business behaviour
 
@@ -47,7 +46,7 @@ The entire purchase is validated before either external service is called. A val
 
 `TicketServiceImpl` keeps purchase totals local to each call and accepts payment and reservation interfaces through its constructor for testing or integration. Its no-argument constructor remains available and uses the supplied provider implementations. The supplied provider bodies are placeholders, so this project demonstrates orchestration rather than a live booking system.
 
-The public purchase method delegates to private validation/calculation helpers, then sends an immutable pair of derived totals to the providers. See [the design notes](DESIGN.md) for responsibility boundaries, alternatives, and production system-design discussion.
+The public purchase method delegates to private validation/calculation helpers, then sends an immutable pair of derived totals to the providers.
 
 `TicketTypeRequest` is final with private final fields and read-only accessors. Purchase validation belongs to the service so invalid requests are rejected consistently at the purchase boundary.
 
